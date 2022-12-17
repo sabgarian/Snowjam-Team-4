@@ -9,7 +9,7 @@ public class ButtonShared : MonoBehaviour, ISelectHandler, IDeselectHandler, IPo
     [SerializeField] private float leanScale = 1.15f;
     [SerializeField] private float leanScaleTime = 0.35f;
     [SerializeField] private float leanMoveTime = 0.50f;
-    LTDescr selection;
+    private LTDescr selection;
     private void OnEnable()
     {
         Vector2 temp = transform.localPosition;
