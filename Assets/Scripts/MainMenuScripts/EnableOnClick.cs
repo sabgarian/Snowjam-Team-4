@@ -9,7 +9,6 @@ public class EnableOnClick : MonoBehaviour
     [SerializeField] private GameObject[] buttons;
     [SerializeField] private float leanMove = 2f;
     [SerializeField] private float fadeTime = 0.1f;
-    private bool buttonPressed = false;
 
     // Initialize everything to be inactive at the start before the prompt and
     void Start()
@@ -24,7 +23,7 @@ public class EnableOnClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!buttonPressed && Input.anyKeyDown)
+        if(Input.anyKeyDown) //might need to check for controller too
         {
             foreach (GameObject gameobject in buttons)
             {
@@ -34,7 +33,7 @@ public class EnableOnClick : MonoBehaviour
             {
                 buttons[0].GetComponent<Button>().Select();
             }
-            buttonPressed = true;
+
             StartCoroutine(Fade());
         }
     }
