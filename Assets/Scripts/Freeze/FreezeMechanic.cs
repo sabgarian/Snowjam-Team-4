@@ -11,12 +11,10 @@ public class FreezeMechanic : MonoBehaviour
     [SerializeField] private Sprite cooldown1;
     [SerializeField] private Sprite cooldown2;
     [SerializeField] private Camera cam;
-    [SerializeField] private LayerMask mask;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform attackPoint;
     private float currentCoolDown = 0f;
 
-    public EnemyPatrol enemyMoveScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +25,6 @@ public class FreezeMechanic : MonoBehaviour
     void Update()
     {
         FreezeObject();
-        FreezeEnemy();
         doUI();
     }
 
@@ -52,15 +49,6 @@ public class FreezeMechanic : MonoBehaviour
         {
             currentCoolDown = cooldownTimer;
             Shoot();
-        }
-    }
-
-    public void FreezeEnemy()
-    {
-        enemyMoveScript.speed = 0.25f;
-        if (currentCoolDown <= 0f)
-        {
-            enemyMoveScript.speed = 1f;
         }
     }
 
