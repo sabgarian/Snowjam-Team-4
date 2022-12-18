@@ -18,11 +18,11 @@ public class PlayerController : MonoBehaviour
     Vector3 cameraPos; // camera position
     [SerializeField] Camera mainCamera;
 
-    /*
+    
     // Animations
     SpriteRenderer sprite;
     Animator anim;
-    */
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -34,10 +34,10 @@ public class PlayerController : MonoBehaviour
             cameraPos = mainCamera.transform.position;
         }
         // Animations
-        /*
+        
         sprite = GetComponent<SpriteRenderer>(); // gets the player's sprite renderer component
         anim = GetComponent<Animator>(); // gets the player's animator component
-        */
+        
     }
 
     private void Update()
@@ -50,16 +50,16 @@ public class PlayerController : MonoBehaviour
 
         grounded = isGrounded(); // checks if player is grounded
         
-        /*
-        anim.SetBool("Jump", !grounded);
-        */
+        
+        anim.SetBool("isJumping", !grounded);
+        
 
         // if player is grounded and jump key pressed
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             if(grounded)
             {
-                //anim.SetBool("Jump", true);
+                anim.SetBool("isJumping", true);
                 rb.AddForce(Vector2.up * jumpForce); // add jump force upward               
             }
         }
@@ -85,12 +85,9 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
-        /*
-        // Set yVelocity in animator
-        anim.SetFloat("yVelocity", rb.velocity.y);
 
         Animate();
-        */
+       
     }
 
     public IEnumerator CancelDash() 
@@ -142,26 +139,17 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D raycastHit = Physics2D.Raycast(coll.bounds.center, Vector2.down, coll.bounds.extents.y + extraHeight);
         return raycastHit.collider != null;
     }
-    /*
+    
     private void Animate()
     {
+        anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
         if (rb.velocity.x < 0f) // flip the sprite to point to the right direction
         {
             sprite.flipX = true;
-            anim.SetBool("Walk", true); // change animator parameter so that the character is walking
-            anim.SetBool("Idle", false); // and stopds idling
         }
         else if (rb.velocity.x > 0f)
         {
             sprite.flipX = false;
-            anim.SetBool("Walk", true);
-            anim.SetBool("Idle", false);
-        }
-        else 
-        {
-            anim.SetBool("Walk", false); // change animator parameter so that the character stops walking
-            anim.SetBool("Idle", true); // and starts idling
         }
     }
-    */
 }
