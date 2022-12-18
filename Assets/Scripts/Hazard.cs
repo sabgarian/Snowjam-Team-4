@@ -7,14 +7,18 @@ public class Hazard : MonoBehaviour
 {
     [SerializeField] private int damageDealt = 1;
     [SerializeField] private UnityEvent trigger;
+    private bool disabled = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
-        if(collision.tag == "Player")
+        if(collision.isTrigger && collision.tag == "Player" && !disabled)
         {
-            Debug.Log("called)");
             collision.gameObject.GetComponent<PlayerHealth>().DamagePlayer(damageDealt);
             trigger?.Invoke();
         }
+    }
+    public void changeProp(bool change)
+    {
+        disabled = change;
     }
 }

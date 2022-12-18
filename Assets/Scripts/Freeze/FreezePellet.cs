@@ -15,6 +15,11 @@ public class FreezePellet : MonoBehaviour
 
     void OnTriggerEnter2D (Collider2D hit)
     {
+        if (hit.gameObject.tag == "Player") return;
+        if (hit.gameObject.layer == 3)
+        {
+            hit.gameObject.GetComponent<Freezable>().FreezeObject();
+        }
         Destroy(this.gameObject);
     }
 
@@ -22,5 +27,12 @@ public class FreezePellet : MonoBehaviour
     {
         if(hit.gameObject.layer == 6)
             Destroy(this.gameObject);
+        if (hit.gameObject.tag == "Player") return;
+        if (hit.gameObject.layer == 3)
+        {
+            hit.gameObject.GetComponentInParent<Freezable>().FreezeObject();
+        }
+        Destroy(this.gameObject);
     }
+
 }
