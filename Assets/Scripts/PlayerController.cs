@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<Collider2D>();
+        coll = GetComponent<BoxCollider2D>();
         mainCamera = Camera.main;
 
         if (mainCamera) // if main camera exists
@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
     {
         float extraHeight = 0.5f;
         Physics2D.queriesStartInColliders = false;
-        RaycastHit2D raycastHit = Physics2D.Raycast(coll.bounds.center, Vector2.down, coll.bounds.extents.y + extraHeight);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, coll.bounds.extents.y + extraHeight);
         return raycastHit.collider != null;
     }
     

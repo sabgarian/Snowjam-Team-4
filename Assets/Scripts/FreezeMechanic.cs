@@ -10,6 +10,10 @@ public class FreezeMechanic : MonoBehaviour
     [SerializeField] private float cooldownTimer = 5f;
     [SerializeField] private Sprite cooldown1;
     [SerializeField] private Sprite cooldown2;
+    [SerializeField] private Camera cam;
+    [SerializeField] private LayerMask mask;
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private Transform attackPoint;
     private float currentCoolDown = 0f;
     // Start is called before the first frame update
     void Start()
@@ -40,9 +44,16 @@ public class FreezeMechanic : MonoBehaviour
 
     public void FreezeObject()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+
+        if(Input.GetKeyDown(KeyCode.F) && currentCoolDown <= 0.05f)
         {
             currentCoolDown = cooldownTimer;
+            Shoot();
         }
+    }
+
+    private void Shoot()
+    {
+        Instantiate(projectile, attackPoint.position, attackPoint.rotation);
     }
 }
