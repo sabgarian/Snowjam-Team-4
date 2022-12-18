@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class FreezeMechanic : MonoBehaviour
 {
+    [SerializeField] private GameObject cooldownUI;
+    [SerializeField] private float cooldownTimer = 5f;
+    [SerializeField] private Sprite cooldown1;
+    [SerializeField] private Sprite cooldown2;
+    private float currentCoolDown = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +20,29 @@ public class FreezeMechanic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        FreezeObject();
+        doUI();
+    }
+
+    private void doUI()
+    {
+        currentCoolDown = Mathf.Max(0, currentCoolDown - Time.fixedDeltaTime);
+        if (currentCoolDown > 0)
+        {
+            cooldownUI.GetComponent<Image>().sprite = cooldown2;
+        }
+        else
+        {
+            cooldownUI.GetComponent<Image>().sprite = cooldown1;
+        }
+        cooldownUI.GetComponentInChildren<TMP_Text>().text = ((int)currentCoolDown).ToString();
+    }
+
+    public void FreezeObject()
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            currentCoolDown = cooldownTimer;
+        }
     }
 }
