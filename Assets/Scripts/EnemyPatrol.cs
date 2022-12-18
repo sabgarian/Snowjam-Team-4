@@ -9,7 +9,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class EnemyPatrol : MonoBehaviour
 {
-    [SerializeField] private float speed = 1f;
+    [SerializeField] public float speed = 1f;
     private Rigidbody2D rb;
     private BoxCollider2D groundDetect;
     private Rigidbody2D enemy;
