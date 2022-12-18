@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         // Makes the camera follow the player
         if (mainCamera)
         {
-            mainCamera.transform.position = new Vector3(transform.position.x, cameraPos.y, cameraPos.z);
+            mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, cameraPos.z);
         }
 
         grounded = isGrounded(); // checks if player is grounded
