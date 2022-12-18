@@ -136,7 +136,11 @@ public class PlayerController : MonoBehaviour
     {
         float extraHeight = 0.5f;
         Physics2D.queriesStartInColliders = false;
-        RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, coll.bounds.extents.y + extraHeight);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(
+            coll.bounds.center, 
+            coll.bounds.size, 
+            0f, 
+            Vector2.down, coll.bounds.extents.y + extraHeight);
         return raycastHit.collider != null;
     }
     
