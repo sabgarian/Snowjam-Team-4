@@ -10430,7 +10430,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812647109}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.22, y: -2.36, z: -0.24053498}
+  m_LocalPosition: {x: -3.22, y: -3.82, z: -0.24053498}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10538,10 +10538,12 @@ GameObject:
   m_Component:
   - component: {fileID: 921993893}
   - component: {fileID: 921993892}
-  - component: {fileID: 921993891}
-  - component: {fileID: 921993890}
-  - component: {fileID: 921993894}
   - component: {fileID: 921993896}
+  - component: {fileID: 921993890}
+  - component: {fileID: 921993898}
+  - component: {fileID: 921993891}
+  - component: {fileID: 921993894}
+  - component: {fileID: 921993897}
   m_Layer: 3
   m_Name: Enemy1
   m_TagString: Untagged
@@ -10559,10 +10561,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.029281616, y: -0.37038517}
+  m_Offset: {x: -0.029289246, y: -0.025965452}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10573,7 +10575,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.979782, y: 5.276675}
+  m_Size: {x: 5.751297, y: 5.9655147}
   m_EdgeRadius: 0
 --- !u!95 &921993891
 Animator:
@@ -10678,7 +10680,19 @@ MonoBehaviour:
   damageDealt: 1
   trigger:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 921993897}
+        m_TargetAssemblyTypeName: Knockback, Assembly-CSharp
+        m_MethodName: KnockbackPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!50 &921993896
 Rigidbody2D:
   serializedVersion: 4
@@ -10700,6 +10714,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &921993897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921993889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7317cfa31fbcf6847b18d10bbb6cafbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 35
+  player: {fileID: 1525905584}
+--- !u!70 &921993898
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921993889}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.33064294}
+  m_Size: {x: 4.850619, y: 5.3087144}
+  m_Direction: 0
 --- !u!1 &1001968824
 GameObject:
   m_ObjectHideFlags: 0
@@ -10855,7 +10899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7317cfa31fbcf6847b18d10bbb6cafbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 150
+  force: 75
   player: {fileID: 1525905584}
 --- !u!1 &1029634056
 GameObject:

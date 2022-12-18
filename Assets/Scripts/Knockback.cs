@@ -9,14 +9,16 @@ public class Knockback : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(!player) player = GetComponent<PlayerController>().gameObject;
     }
 
     public void KnockbackPlayer()
     {
         Vector2 direction = (player.transform.position - transform.position).normalized;
+        direction.y = Mathf.Abs(direction.y);
         Debug.Log(direction);
-        player.GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
+        Rigidbody2D playerrb = player.GetComponent<Rigidbody2D>();
+        playerrb.velocity = Vector2.zero;
+        playerrb.AddForce(direction * force, ForceMode2D.Impulse);
 
     }
 
