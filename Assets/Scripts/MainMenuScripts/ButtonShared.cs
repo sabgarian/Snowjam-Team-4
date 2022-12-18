@@ -14,18 +14,18 @@ public class ButtonShared : MonoBehaviour, ISelectHandler, IDeselectHandler, IPo
     {
         Vector2 temp = transform.localPosition;
         transform.localPosition = new Vector2(transform.localPosition.x, -Screen.height);
-        transform.LeanMoveLocalY(temp.y, leanMoveTime).setEaseOutQuart();
+        transform.LeanMoveLocalY(temp.y, leanMoveTime).setEaseOutQuart().setIgnoreTimeScale(true);
     }
 
     public void OnSelect(BaseEventData _)
     {
-        selection = transform.LeanScale(new Vector2(leanScale, leanScale), leanScaleTime).setEaseInSine().id;
+        selection = transform.LeanScale(new Vector2(leanScale, leanScale), leanScaleTime).setEaseInSine().setIgnoreTimeScale(true).id;
     }
 
     public void OnDeselect(BaseEventData _)
     {
         LeanTween.cancel(selection);
-        transform.LeanScale(Vector2.one, leanScaleTime).setEaseOutSine();
+        transform.LeanScale(Vector3.one, leanScaleTime).setIgnoreTimeScale(true).setEaseOutSine();
     }
 
     public void OnPointerEnter(PointerEventData _)

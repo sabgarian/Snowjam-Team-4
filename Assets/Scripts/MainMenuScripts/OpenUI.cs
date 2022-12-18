@@ -19,13 +19,13 @@ public class OpenUI : MonoBehaviour
     private void OnEnable()
     {
         transform.localPosition = new Vector2(startPos.x, -Screen.height);
-        selection = transform.LeanMoveLocalY(startPos.y, leanMoveTime).setEaseOutQuart().setOnComplete(() => EventSystem.current.SetSelectedGameObject(firstSelected)).id;
+        selection = transform.LeanMoveLocalY(startPos.y, leanMoveTime).setEaseOutQuart().setIgnoreTimeScale(true).setOnComplete(() => EventSystem.current.SetSelectedGameObject(firstSelected)).id;
     }
 
     public void closeUI()
     {
         LeanTween.cancel(selection);
-        EventSystem.current.SetSelectedGameObject(previousSelected);
-        transform.LeanMoveLocalY(-Screen.height, leanMoveTime).setEaseInQuart().setOnComplete(() => this.gameObject.SetActive(false));
+        if(previousSelected) EventSystem.current.SetSelectedGameObject(previousSelected);
+        transform.LeanMoveLocalY(-Screen.height, leanMoveTime).setEaseInQuart().setIgnoreTimeScale(true).setOnComplete(() => this.gameObject.SetActive(false));
     }
 }

@@ -18,7 +18,7 @@ public class EnableOnClick : MonoBehaviour
             gameobject.SetActive(false);
         }
 
-        leanID = transform.LeanMoveLocal(new Vector2(0, (transform.localPosition.y) + leanMove), 1).setEaseInSine().setLoopPingPong().id;
+        leanID = transform.LeanMoveLocal(new Vector2(0, (transform.localPosition.y) + leanMove), 1).setEaseInSine().setIgnoreTimeScale(true).setLoopPingPong().id;
     }
 
     // Update is called once per frame

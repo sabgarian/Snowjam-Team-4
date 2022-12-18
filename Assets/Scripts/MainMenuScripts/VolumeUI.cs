@@ -13,17 +13,17 @@ public class VolumeUI : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public void OnSelect(BaseEventData _)
     {
-        icon.transform.LeanRotateZ(-rotation, rotationTime).setEaseInSine().setOnComplete(Rotation);
+        selection = icon.transform.LeanRotateZ(-rotation, rotationTime).setIgnoreTimeScale(true).setEaseInSine().setOnComplete(Rotation).id;
     }
 
     private void Rotation()
     {
-        selection = icon.transform.LeanRotateZ(rotation, rotationTime).setEaseInSine().setLoopPingPong().id;
+        selection = icon.transform.LeanRotateZ(rotation, rotationTime).setIgnoreTimeScale(true).setEaseInSine().setLoopPingPong().id;
     }
 
     public void OnDeselect(BaseEventData _)
     {
         LeanTween.cancel(selection);
-        icon.transform.LeanRotateZ(0f, rotationTime/2).setEaseInSine();
+        icon.transform.LeanRotateZ(0f, rotationTime/2).setIgnoreTimeScale(true).setEaseInSine();
     }
 }
