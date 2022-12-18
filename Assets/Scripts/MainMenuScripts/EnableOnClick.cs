@@ -9,6 +9,7 @@ public class EnableOnClick : MonoBehaviour
     [SerializeField] private GameObject[] buttons;
     [SerializeField] private float leanMove = 2f;
     [SerializeField] private float fadeTime = 0.1f;
+    private int leanID;
 
     // Initialize everything to be inactive at the start before the prompt and
     void Start()
@@ -17,7 +18,7 @@ public class EnableOnClick : MonoBehaviour
             gameobject.SetActive(false);
         }
 
-        transform.LeanMoveLocal(new Vector2(0, (transform.localPosition.y) + leanMove), 1).setEaseInSine().setLoopPingPong();
+        leanID = transform.LeanMoveLocal(new Vector2(0, (transform.localPosition.y) + leanMove), 1).setEaseInSine().setLoopPingPong().id;
     }
 
     // Update is called once per frame
@@ -48,6 +49,7 @@ public class EnableOnClick : MonoBehaviour
             tmText.color = curr;
             yield return new WaitForSeconds(fadeTime);
         }
+        LeanTween.cancel(leanID);
         this.gameObject.SetActive(false);
     }
 }

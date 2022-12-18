@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ButtonShared : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler
+public class ButtonShared : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private float leanScale = 1.15f;
     [SerializeField] private float leanScaleTime = 0.35f;
     [SerializeField] private float leanMoveTime = 0.50f;
-    private LTDescr selection;
+    private int selection;
     private void OnEnable()
     {
         Vector2 temp = transform.localPosition;
@@ -19,17 +19,22 @@ public class ButtonShared : MonoBehaviour, ISelectHandler, IDeselectHandler, IPo
 
     public void OnSelect(BaseEventData _)
     {
-        selection = transform.LeanScale(new Vector2(leanScale, leanScale), leanScaleTime).setEaseInSine();
+        selection = transform.LeanScale(new Vector2(leanScale, leanScale), leanScaleTime).setEaseInSine().id;
     }
 
     public void OnDeselect(BaseEventData _)
     {
-        LeanTween.cancel(selection.id);
+        LeanTween.cancel(selection);
         transform.LeanScale(Vector2.one, leanScaleTime).setEaseOutSine();
     }
 
     public void OnPointerEnter(PointerEventData _)
     {
         OnSelect(null);
+    }
+
+    public void OnPointerExit(PointerEventData _)
+    {
+        OnDeselect(null);
     }
 }

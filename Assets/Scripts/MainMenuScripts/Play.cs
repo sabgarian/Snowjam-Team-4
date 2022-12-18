@@ -7,7 +7,6 @@ public class Play : MonoBehaviour
 {
     public void PlayOnClick()
     {
-        Debug.Log("clicked");
-        //SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 }
