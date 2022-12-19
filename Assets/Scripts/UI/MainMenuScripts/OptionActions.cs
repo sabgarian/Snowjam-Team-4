@@ -21,6 +21,7 @@ public class OptionActions : MonoBehaviour
     {
         //LeanTween.cancelAll();
         Time.timeScale = 1f;
+        PlayerPrefs.SetInt("PlayerHealth", 4);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 }
